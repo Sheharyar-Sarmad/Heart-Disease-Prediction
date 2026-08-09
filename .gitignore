@@ -1,0 +1,6 @@
+.idea
+.pycache
+.ipynb_checkpoints
+.venv
+.env*
+.vscode
