@@ -295,14 +295,22 @@ if st.session_state.page == "Home":
 
     col1, col2, col3, col4 = st.columns(4)
     with col1:
-        st.markdown(f"""
-            <div class='stat-card stat-blue'>
-                <div class='stat-icon'><i class="fas fa-heart-pulse"></i></div>
-                <div class='stat-val'>{REAL_ACCURACY}%</div>
-                <div class='stat-label'>Model Accuracy</div>
-                <div style='color: rgba(255,255,255,0.4); font-size: 0.7rem; margin-top: 0.2rem;'>Highly Accurate</div>
-            </div>
-        """, unsafe_allow_html=True)
+        st.markdown("""
+    <div id="local-time-widget" class='datetime-widget'>
+        <i class="far fa-calendar-alt"></i> <span id="date-text">Loading...</span> &nbsp;|&nbsp; <i class="far fa-clock"></i> <span id="time-text">Loading...</span>
+    </div>
+    <script>
+        function updateLocalTime() {
+            const now = new Date();
+            const dateStr = now.toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' });
+            const timeStr = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
+            document.getElementById('date-text').innerText = dateStr;
+            document.getElementById('time-text').innerText = timeStr;
+        }
+        updateLocalTime();
+        setInterval(updateLocalTime, 60000); // Updates automatically every minute
+    </script>
+       """, unsafe_allow_html=True)
     with col2:
         st.markdown(f"""
             <div class='stat-card stat-purple'>
