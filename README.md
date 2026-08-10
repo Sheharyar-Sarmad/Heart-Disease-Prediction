@@ -4,9 +4,9 @@
 [![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
 [![Groq](https://img.shields.io/badge/Groq-FF6600?style=for-the-badge&logo=groq&logoColor=white)](https://groq.com/)
 
-> **Live Demo:** [heart-disease-prediction-glkjlmlhtmomn8wrr2j7sd.streamlit.app](https://heart-disease-prediction-glkjlmlhtmomn8wrr2j7sd.streamlit.app/)
+> **Live Demo:** [Heart Disease Prediction](https://heart-disease-prediction-glkjlmlhtmomn8wrr2j7sd.streamlit.app/)
 
-> **Linkedin Post:** [linkedin.com/in/sheharyar-sarmad-9b7736289/](https://www.linkedin.com/in/sheharyar-sarmad-9b7736289/)
+> **Linkedin Post:** [Heart Disease Prediction Linkedin Post](https://www.linkedin.com/in/sheharyar-sarmad-9b7736289/)
 ## 📖 About The Project
 
 Heart Predictor is an advanced, AI-powered web application designed to estimate the risk of heart disease based on 11 key clinical features. Built with a **Logistic Regression** machine learning model and integrated with **Groq's Llama 3.3 AI**, the app provides instant, empathetic, and actionable health insights through a stunning, futuristic glassmorphism dashboard.
