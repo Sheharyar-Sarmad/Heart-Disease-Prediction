@@ -13,7 +13,7 @@ load_dotenv()
 # PAGE CONFIG (Fixed page_icon to an emoji instead of local path)
 st.set_page_config(
     page_title="Heart Predictor",
-    page_icon="❤️",
+    page_icon="./assets/logo_icon.svg",
     layout="wide",
     initial_sidebar_state="expanded"
 )
