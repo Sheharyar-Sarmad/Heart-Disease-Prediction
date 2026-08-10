@@ -282,20 +282,27 @@ def risk_label(prob):
 # HOME PAGE 
 if st.session_state.page == "Home":
     st.markdown("""
-    <div class='datetime-widget' id='real-time-widget'>
+    <div class='datetime-widget'>
         <i class="far fa-calendar-alt"></i> <span id="date-text">Loading...</span> &nbsp;|&nbsp; <i class="far fa-clock"></i> <span id="time-text">Loading...</span>
     </div>
     <script>
         function updateClock() {
-            const now = new Date();
-            document.getElementById('date-text').innerText = now.toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' });
-            document.getElementById('time-text').innerText = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
+            try {
+                const now = new Date();
+                const dateEl = document.getElementById('date-text');
+                const timeEl = document.getElementById('time-text');
+                if (dateEl && timeEl) {
+                    dateEl.innerText = now.toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' });
+                    timeEl.innerText = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
+                }
+            } catch (e) { /* Silently ignores if Streamlit blocks scripts */ }
         }
         updateClock();
-        setInterval(updateClock, 60000);
+        setTimeout(updateClock, 800); // Delays execution so DOM has time to attach
+        setInterval(updateClock, 60000); // Updates every 60 seconds
     </script>
     """, unsafe_allow_html=True)
-
+    
     st.markdown("<div style='clear:both;'></div>", unsafe_allow_html=True)
     st.markdown("<div class='dash-title'>Welcome back! 👋</div>", unsafe_allow_html=True)
     st.markdown("<div class='dash-subtitle'>Get your heart health prediction with AI-powered insights.</div>", unsafe_allow_html=True)
