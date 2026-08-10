@@ -281,11 +281,19 @@ def risk_label(prob):
 
 # HOME PAGE 
 if st.session_state.page == "Home":
-    now = datetime.now()
-    st.markdown(f"""
-        <div class='datetime-widget'>
-            <i class="far fa-calendar-alt"></i> {now.strftime('%b %d, %Y')} &nbsp;|&nbsp; <i class="far fa-clock"></i> {now.strftime('%I:%M %p')}
-        </div>
+    st.markdown("""
+    <div class='datetime-widget' id='real-time-widget'>
+        <i class="far fa-calendar-alt"></i> <span id="date-text">Loading...</span> &nbsp;|&nbsp; <i class="far fa-clock"></i> <span id="time-text">Loading...</span>
+    </div>
+    <script>
+        function updateClock() {
+            const now = new Date();
+            document.getElementById('date-text').innerText = now.toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' });
+            document.getElementById('time-text').innerText = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
+        }
+        updateClock();
+        setInterval(updateClock, 60000);
+    </script>
     """, unsafe_allow_html=True)
 
     st.markdown("<div style='clear:both;'></div>", unsafe_allow_html=True)
