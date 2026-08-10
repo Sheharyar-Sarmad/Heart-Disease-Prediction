@@ -7,6 +7,8 @@ import os
 from datetime import datetime
 from groq import Groq
 from dotenv import load_dotenv
+from datetime import datetime
+from zoneinfo import ZoneInfo  # <--- ADD THIS LINE
 
 load_dotenv()
 
@@ -281,28 +283,14 @@ def risk_label(prob):
 
 # HOME PAGE 
 if st.session_state.page == "Home":
-    st.markdown("""
-    <div class='datetime-widget'>
-        <i class="far fa-calendar-alt"></i> <span id="date-text">Loading...</span> &nbsp;|&nbsp; <i class="far fa-clock"></i> <span id="time-text">Loading...</span>
-    </div>
-    <script>
-        function updateClock() {
-            try {
-                const now = new Date();
-                const dateEl = document.getElementById('date-text');
-                const timeEl = document.getElementById('time-text');
-                if (dateEl && timeEl) {
-                    dateEl.innerText = now.toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' });
-                    timeEl.innerText = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
-                }
-            } catch (e) { /* Silently ignores if Streamlit blocks scripts */ }
-        }
-        updateClock();
-        setTimeout(updateClock, 800); // Delays execution so DOM has time to attach
-        setInterval(updateClock, 60000); // Updates every 60 seconds
-    </script>
+    # Perfect local timezone fix, no JavaScript required
+    now_sg = datetime.now(ZoneInfo("Asia/Singapore"))
+    st.markdown(f"""
+        <div class='datetime-widget'>
+            <i class="far fa-calendar-alt"></i> {now_sg.strftime('%b %d, %Y')} &nbsp;|&nbsp; <i class="far fa-clock"></i> {now_sg.strftime('%I:%M %p')}
+        </div>
     """, unsafe_allow_html=True)
-    
+
     st.markdown("<div style='clear:both;'></div>", unsafe_allow_html=True)
     st.markdown("<div class='dash-title'>Welcome back! 👋</div>", unsafe_allow_html=True)
     st.markdown("<div class='dash-subtitle'>Get your heart health prediction with AI-powered insights.</div>", unsafe_allow_html=True)
