@@ -10,10 +10,10 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-# PAGE CONFIG 
+# PAGE CONFIG (Fixed page_icon to an emoji instead of local path)
 st.set_page_config(
     page_title="Heart Predictor",
-    page_icon="./assets/logo_icon.png",
+    page_icon="❤️",
     layout="wide",
     initial_sidebar_state="expanded"
 )
@@ -93,7 +93,7 @@ def ask_followup(question):
     except Exception as e:
         return f"Sorry, I ran into an error reaching the AI service: {e}"
 
-# DASHBOARD UI CSS 
+# DASHBOARD UI CSS (FIXED SIDEBAR TOGGLE & REMOVED HIDDEN HEADER)
 CUSTOM_CSS = """
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
@@ -178,7 +178,10 @@ CUSTOM_CSS = """
     .sidebar-logo i { font-size: 3.5rem; background: linear-gradient(135deg, #ec4899, #8b5cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; display: block; margin-bottom: 0.8rem; }
     .sidebar-logo span { font-size: 1.4rem; font-weight: 700; background: linear-gradient(135deg, #ffffff, #94a3b8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
     .sidebar-logo p { font-size: 0.75rem; color: rgba(255,255,255,0.5); margin-top: 0.2rem; -webkit-text-fill-color: rgba(255,255,255,0.5); }
-    header, footer { visibility: hidden; }
+    
+    /* ===== FIXED CSS: Hides deploy menu but KEEPS the sidebar toggle ===== */
+    #MainMenu {visibility: hidden;}
+    footer {visibility: hidden;}
     h1 > a, h2 > a { display: none !important; }
 </style>
 """
